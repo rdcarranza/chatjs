@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ChatJS</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/estilo-main.css">
+
+    
+
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">ChatJS</a>
+            <div id="nav-mobile" class="right hide-on-med-and-down">
+                <div class="nav-wrapper col s12">
+                    <a href="#!" class="breadcrumb">Inicio</a>
+                    <a href="#!" class="breadcrumb">Registro de Usuario</a>
+                    <a href="#!" class="breadcrumb">ChatJS</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container row" id="fchat">
+      <div class="col s12 m12 l12">
+        <div class="card light-blue lighten-2">
+          <div class="card-content black-text">
+            <span class="card-title" id="tarjeta-titulo">ChatJS</span>
+            <p>Interactúa libremente en este chat grupal!</p>
+          </div>
+
+          <div class="card-content" id="chat-visor">
+
+            <ul class="collection" id="lista-chat">
+              
+              <!--
+              <li class="collection-item avatar">
+                <i class="material-icons circle red">account_circle</i>
+                <span class="title">Usuario:</span>
+                <p>mensaje</p>              
+              </li>
+              -->
+
+            </ul>
+
+            <div class="progress">
+              <div class="indeterminate"></div>
+            </div>
+
+          </div>
+
+          <div class="card-action">
+            <form action="" id="form-mensaje" method="POST">
+              <div class="row input-field">
+                
+                  <i class="material-icons prefix">mode_comment</i>
+                  <input id="msj-chat" type="text" class="validate" data-length="120">
+                  <label for="msj-chat">Mensaje: </label>
+                  
+                  <button type="submit" class="waves-effect waves-light btn pulse" id="msj-submit"><i class="material-icons left">send</i> <span id="text-submit">ENVIAR</span></button>                                      
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">ChatJS</h5>
+            <p class="grey-text text-lighten-4">Este chat grupal fue escrito 100% en Javascript.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="https://nodejs.org" target="_blank">NodeJS</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://expressjs.com" target="_blank">Express</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://materializecss.com/" target="_blank">Materialize</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://jquery.com/" target="_blank">JQuery</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2020 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="#!">GITHUB</a>
+        </div>
+      </div>
+    </footer>  
+
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>    
+    <script type="text/javascript" src="/js/chat.js"></script>
+</body>
+</html>

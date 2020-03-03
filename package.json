@@ -1,0 +1,23 @@
+{
+  "name": "chatjs",
+  "version": "0.0.1",
+  "description": "Chat Web escrito en Javascript",
+  "main": "index.js",
+  "scripts": {
+    "debug":"nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dario Carranza",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "repository": {
+    "private": true
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
