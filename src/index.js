@@ -14,14 +14,14 @@ require('./sockets')(io);
 //Static
 app.use(express.static(path.join(__dirname,'public')));
 
-//Direccionamiento
-app.post('/registro',function(req,res){
-  res.send('');
-});
+//middlewares
 
-app.get('/chat',function(req,res){
-  res.send('./chat.html');
-});
+//Direccionamientos
+
+var enrutador = require('./rutas');
+
+app.use('/',enrutador);
+
 //Manejo de errores
 
 app.use(function(err, req, res, next) {
