@@ -4,14 +4,19 @@
   "description": "Chat Web escrito en Javascript",
   "main": "index.js",
   "scripts": {
-    "debug":"nodemon src/index.js",
+    "debug": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Dario Carranza",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "connect-flash": "^0.1.1",
     "express": "^4.17.1",
+    "mongoose": "^5.9.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "socket.io": "^2.3.0"
   },
   "repository": {

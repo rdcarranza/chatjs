@@ -16,6 +16,8 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //middlewares
 
+app.use(express.urlencoded({extended: false}));
+
 //Direccionamientos
 
 var enrutador = require('./rutas');
@@ -30,6 +32,8 @@ app.use(function(err, req, res, next) {
   });
 
 //Iniciado el servidor web.
+
+require('./database');
 
 app.set('port',process.env.PORT || 7000);
 

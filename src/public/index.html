@@ -31,7 +31,7 @@
         </div>
     </nav>
 
-    <!--Panel de registro de Usuario-->
+    <!--Formulario de registro de Usuario-->
     <div class="container row" id="freg">
       <div class="col s12 m12 l12">
         <div class="card light-blue lighten-2">
@@ -41,11 +41,11 @@
           </div>
           
           <div class="card-content">
-              <form id="form-registro" action="" method="post" class="row">
+              <form id="form-registro" action="/registro" method="POST" class="row">
                 <div class="col s12 m12 l12">
                   <div class="row input-field">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="user_name" type="text" class="validate" data-length="20">
+                    <input id="user_name" type="text" name="nombre_usuario" class="validate" data-length="20">
                     <label for="user_name">Usuario: </label>
                   </div>
                 </div>
@@ -54,59 +54,12 @@
           </div>
 
           <div class="card-action">
-              <a type="submit" class="waves-effect waves-light btn pulse"><i class="material-icons left">cloud</i>INGRESAR</a>
+              <button type="submit" form="form-registro" class="waves-effect waves-light btn pulse"><i class="material-icons left">cloud</i>INGRESAR</button>
           </div>
         </div>
       </div>
     </div>
-
-
-    <!--panel de CHATJS-->
-    <div class="container row" id="fchat">
-      <div class="col s12 m12 l12">
-        <div class="card light-blue lighten-2">
-          <div class="card-content black-text">
-            <span class="card-title" id="tarjeta-titulo">ChatJS</span>
-            <p>Interactúa libremente en este chat grupal!</p>
-          </div>
-
-          <div class="card-content" id="chat-visor">
-
-            <ul class="collection" id="lista-chat">
-              
-              <!--
-              <li class="collection-item avatar">
-                <i class="material-icons circle red">account_circle</i>
-                <span class="title">Usuario:</span>
-                <p>mensaje</p>              
-              </li>
-              -->
-
-            </ul>
-
-            <div class="progress">
-              <div class="indeterminate"></div>
-            </div>
-
-          </div>
-
-          <div class="card-action">
-            <form action="" id="form-mensaje" method="POST">
-              <div class="row input-field">
-                
-                  <i class="material-icons prefix">mode_comment</i>
-                  <input id="msj-chat" type="text" class="validate" data-length="120">
-                  <label for="msj-chat">Mensaje: </label>
-                  
-                  <button type="submit" class="waves-effect waves-light btn pulse" id="msj-submit"><i class="material-icons left">send</i> <span id="text-submit">ENVIAR</span></button>                                      
-
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    
+   
 
     <!--Pie de Página-->
     <footer class="page-footer">
