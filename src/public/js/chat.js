@@ -3,39 +3,65 @@ $(function(){
     const socket = io();
 
     //elementos del DOM
+    const $formRegistro = $('#form-registro');
+    const $errorRegistro = $('#error-registro');
+    const $nombreUsuario = $('#nombre_usuario');
+    const nomusuario = null;
+
     const $formMensaje = $('#form-mensaje');
     const $mensaje = $('#msj-chat');
     const $listaChat = $('#lista-chat');
 
-    
+           
     if(screen.width < 600){
         $('#text-submit').remove();      
-    }
-    
+    }    
 
     $('#msj-submit').onclick = function(){
         $formMensaje.submit();
     };
 
     //eventos
+
+    $formRegistro.submit(function(e){
+        e.preventDefault();
+        socket.emit('nuevo_usuario',$nombreUsuario.val(), function(data){
+            if(data){
+                $('#freg').hide();
+                $('#fchat').show();                
+            }else{
+                $errorRegistro.html(`
+                    <div>
+                        El Nombre de Usuario ingresado NO es correcto, vuelva a intentarlo!
+                    </div>
+                `);
+            }
+        });
+        nomusuario=$nombreUsuario.val();
+        $nombreUsuario.val('');
+    });
+
     $formMensaje.submit(function(e){
         e.preventDefault();
         //console.log($mensaje.val());
-        socket.emit('envio_mensaje',$mensaje.val());
+        socket.emit('envio_mensaje',{
+            mensaje: $mensaje.val(),
+            usuario: nomusuario
+        });
         $mensaje.val('');
     });
 
     var indice_msj=0;
-    socket.on('nuevo_mensaje',function(data){
+    socket.on('nuevo_mensaje', data =>{
                 
         var icono = document.createElement("i");
         icono.innerHTML="account_circle";
         icono.className="material-icons circle red";
         var nom_usuario = document.createElement("span");
-        nom_usuario.innerHTML="Prueba"+":";
+        nom_usuario.innerHTML=data.nombreu+":";
         nom_usuario.className="title";
         var texto_mensaje=document.createElement("p");
-        texto_mensaje.innerHTML=data;
+        texto_mensaje.innerHTML=data.mensaje;
         var item_chat=document.createElement("li");
         item_chat.className="collection-item avatar";
         item_chat.id="im"+indice_msj++;

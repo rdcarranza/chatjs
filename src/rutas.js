@@ -1,7 +1,7 @@
-var express = require('express');
-var enrutador = express.Router();
-
-var path = require('path');
+const express = require('express');
+const enrutador = express.Router();
+const path = require('path');
+const passport = require('passport');
 
 //Direccionamiento
 
@@ -9,13 +9,14 @@ enrutador.get('/', function(req,res){
     res.sendFile(path.join(__dirname,'public','index.html'));
 });
   
-enrutador.post('/registro', function(req,res){
-  console.log(req.body);
-  res.send('REGISTRO de usuario');
-});
+enrutador.post('/registro', passport.authenticate('registro',{
+  successRedirect: '/chat',
+  failureRedirect: '/',
+  passReqToCallback: true
+}));
 
 enrutador.get('/chat', function(req,res){
-  res.sendFile(path.join(__dirname,'public','chat.html'));
+  res.sendFile(path.join(__dirname, 'public', 'chat.html'));
 });
 
 
