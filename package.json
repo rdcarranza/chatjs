@@ -1,11 +1,12 @@
 {
   "name": "chatjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Chat Web escrito en Javascript",
   "main": "index.js",
   "scripts": {
     "debug": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node src/index.js"
   },
   "keywords": [],
   "author": "Dario Carranza",
