@@ -5,7 +5,7 @@ module.exports = function(io){
 
 
     io.on('connection', socket => {
-        console.log("Un nuevo USUARIO conectado.");
+        console.log("Se inició una Nueva Conexión.");
 
         socket.on('nuevo_usuario', (data, cb) => {
             if(usuarios.indexOf(data) > 0){

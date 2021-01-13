@@ -1,8 +1,8 @@
 const http = require('http');
 const path = require('path');
 
-const express = require('express');
-const socketio = require('socket.io');
+const express = require('express'); //carga de la libreria del servidor web.
+const socketio = require('socket.io'); //carga de la librería.
 
 const passport = require('passport');
 const sesion = require('express-session');
@@ -15,8 +15,8 @@ require('./database');
 require('./registroUsuario');
 
 //websocket
-const io = socketio.listen(server);
-require('./sockets')(io);
+const io = socketio.listen(server); //El websocket escucha desde el servidor web (express)
+require('./sockets')(io); //carga del módulo sockets.js, un websocket adaptado a nuestra necesidad.
 
 //Static
 app.use(express.static(path.join(__dirname,'public')));
