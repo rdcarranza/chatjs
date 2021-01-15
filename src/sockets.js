@@ -1,22 +1,24 @@
 //webSocket
+var usuarios = [];
+
 module.exports = function(io){
 
-    let usuarios = [];
-
-
+    
     io.on('connection', socket => {
         console.log("Se inició una Nueva Conexión.");
 
         socket.on('nuevo_usuario', (data, cb) => {
-            if(usuarios.indexOf(data) > 0){
+            console.log("socket->data: "+data);
+            if(usuarios.indexOf(data) >= 0){
                 cb(false);
-                console.log(usuarios.indexOf(data));
+                console.log("usuario duplicado"+usuarios.indexOf(data));
             }else{
                 cb(true);
                 socket.nombreUsuario = data;
                 usuarios.push(socket.nombreUsuario);
 
             }
+            console.log(usuarios);
         });
 
         socket.on('envio_mensaje', data => {

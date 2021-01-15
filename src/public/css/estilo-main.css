@@ -78,3 +78,8 @@ color: #000;
 #msj-submit{
   margin-left: 3%;
 }
+
+p#error-registro{
+  color: red;
+  font-size: 12px;
+}

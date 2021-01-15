@@ -16,7 +16,7 @@ require('./registroUsuario');
 
 //websocket
 const io = socketio.listen(server); //El websocket escucha desde el servidor web (express)
-require('./sockets')(io); //carga del módulo sockets.js, un websocket adaptado a nuestra necesidad.
+require('./sockets')(io); //carga del módulo sockets.js (función), un websocket adaptado a nuestra necesidad. Y se pasa como parametro la conexion websocket.
 
 //Static
 app.use(express.static(path.join(__dirname,'public')));
@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
     res.status(500).send('Algo no esta funcionando bien!');
   });
 
-//Iniciado el servidor web.
+//Iniciando el servidor web.
 
 app.set('port',process.env.PORT || 7000);
 
