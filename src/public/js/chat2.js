@@ -4,10 +4,7 @@ $(function(){
 
     //elementos del DOM
     
-    const $formRegistro = $('#form-registro');
-    const $errorRegistro = $('#error-registro');
-    const $nombreUsuario = $('#user_name');
-    
+        
     var nomusuario = null;
 
     const $formMensaje = $('#form-mensaje');
@@ -15,51 +12,18 @@ $(function(){
     const $listaChat = $('#lista-chat');
     var msj;
            
-    if(screen.width < 600){
-        $('#text-submit').remove();      
-    }    
-
-    $('#regUsuario-submit').onclick = function(){
-        $formRegistro.submit();
-    };
-
+    
     $('#msj-submit').onclick = function(){
         $formMensaje.submit();
     };
 
     //eventos
 
-    $formRegistro.submit(function(e){
-        e.preventDefault();
-        nomusuario=$nombreUsuario.val();
-        if(nomusuario!=null && nomusuario.trim()!=''){ //evita el registro de nombres nulos o vacios.
-            socket.emit('nuevo_usuario',nomusuario, function(data){
-                if(data){
-                    $('#freg').hide();
-                    $('#fchat').show();                
-                }else{
-                    $errorRegistro.html(`
-                        <div>
-                            El Nombre de Usuario ingresado NO es correcto Ó ya se encuentra en uso, vuelva a intentarlo!
-                        </div>
-                    `);
-                }
-            });
-        }else{
-            console.log("Error: Nombre de usuario nulo o vacío.");
-            $errorRegistro.html(`
-            <div>
-                Nombre de Usuario nulo o vacío.
-            </div>
-        `);
-        }        
-        $nombreUsuario.val('');
-    });
-
+    
     $formMensaje.submit(function(e){
         e.preventDefault();
         msj=$mensaje.val();
-        if(msj!=null && msj.trim()!='' && nomusuario!=null){ //evita enviar mensajes vacios y de usuarios sin registro.
+        if(msj!=null && msj.trim()!='' /*&& nomusuario!=null*/){ //evita enviar mensajes vacios y de usuarios sin registro.
             socket.emit('envio_mensaje',{
                 mensaje: msj,
                 usuario: nomusuario

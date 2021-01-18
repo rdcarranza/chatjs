@@ -50,6 +50,14 @@ color: #000;
 
 #tarjeta-titulo{font-weight: 600;}
 
+#barraSup-chat{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
 #chat-visor{
   height: auto;
   max-height: 450px;

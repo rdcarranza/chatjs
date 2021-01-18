@@ -27,7 +27,7 @@ $(function(){
             socket.emit('nuevo_usuario',nomusuario, function(data){
                 if(data){
                     //enviar nomusuario y redireccionar a la pagina de chat.
-                                    
+                                                        
                 }else{
                     $errorRegistro.html(`
                         <div>
