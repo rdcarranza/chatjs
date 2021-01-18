@@ -4,7 +4,6 @@ const path = require('path');
 const express = require('express'); //carga de la libreria del servidor web.
 const socketio = require('socket.io'); //carga de la librería.
 
-const passport = require('passport');
 const sesion = require('express-session');
 const flash = require('connect-flash');
 
@@ -30,8 +29,6 @@ app.use(sesion({
   saveUninitialized: false
 }));
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 
 //Direccionamientos
 
