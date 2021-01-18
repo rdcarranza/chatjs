@@ -1,7 +1,7 @@
 const express = require('express');
 const enrutador = express.Router();
 const path = require('path');
-const passport = require('passport');
+
 
 //Direccionamiento
 
@@ -9,11 +9,11 @@ enrutador.get('/', function(req,res){
     res.sendFile(path.join(__dirname,'public','index.html'));
 });
   
-enrutador.post('/registro', passport.authenticate('registro',{
-  successRedirect: '/chat',
-  failureRedirect: '/',
-  passReqToCallback: true
-}));
+enrutador.post('/registro', function(req,res,next){
+  console.log("req: "+req);
+  console.log("res: "+res);
+  console.log("next: "+next);
+});
 
 enrutador.get('/chat', function(req,res){
   res.sendFile(path.join(__dirname, 'public', 'chat.html'));
