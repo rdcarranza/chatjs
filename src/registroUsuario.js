@@ -5,6 +5,12 @@ const estrategia = require('passport-local').Strategy;
 
 const Usuario = require('./modelos/usuario');
 
+
+
+
+
+
+
 /*
 passport.serializeUser((usuario, done) => {
     done(null,usuario.id);
