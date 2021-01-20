@@ -11,7 +11,7 @@ module.exports = function(io){
             console.log("socket->data: "+data);
             if(usuarios.indexOf(data) >= 0){
                 cb(false);
-                console.log("usuario duplicado"+usuarios.indexOf(data));
+                console.log("usuario duplicado - indice: "+usuarios.indexOf(data));
             }else{
                 cb(true);
                 socket.nombreUsuario = data;

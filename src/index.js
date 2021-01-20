@@ -4,8 +4,10 @@ const path = require('path');
 const express = require('express'); //carga de la libreria del servidor web.
 const socketio = require('socket.io'); //carga de la librería.
 
-const sesion = require('express-session');
+const sesion = require('express-session'); //debe cambiarse por otro middleware de sesiones.
+
 const flash = require('connect-flash');
+const helmet = require('helmet') //librería para la seguridad en la comunicación http.
 
 const app = express();
 const server = http.createServer(app);
@@ -29,6 +31,7 @@ app.use(sesion({
   saveUninitialized: false
 }));
 app.use(flash());
+//app.use(helmet()); //activar cuando ya tenga configurada la conexion segura.
 
 //Direccionamientos
 

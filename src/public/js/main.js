@@ -27,8 +27,8 @@ $(function(){
             socket.emit('nuevo_usuario',nomusuario, function(data){
                 if(data){
                     //enviar nomusuario y redireccionar a la pagina de chat.
-                    $.post('/registro',{nom_u: nomusuario},function(datosu){
-                        console.log(datosu)
+                    $.post('/registro',{'nom_u': nomusuario},function(data_u){
+                        console.log("datos de usuario recibidos: "+data_u.cod);
                     });
                                                         
                 }else{
