@@ -1,6 +1,6 @@
 $(function(){
     //conexión websocket
-    const socket = io();
+    const socket = io(); // este es un objeto generado por la clase io de la libreria sockets.io.js
 
     //elementos del DOM
     const $formRegistro = $('#form-registro');

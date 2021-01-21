@@ -16,8 +16,8 @@ require('./database');
 require('./registroUsuario');
 
 //websocket
-const io = socketio.listen(server); //El websocket escucha desde el servidor web (express)
-require('./sockets')(io); //carga del módulo sockets.js (función), un websocket adaptado a nuestra necesidad. Y se pasa como parametro la conexion websocket.
+const s_io = socketio.listen(server); //El websocket escucha desde el servidor web (express)
+require('./sockets')(s_io); //carga del módulo sockets.js (función), un websocket adaptado a nuestra necesidad. Y se pasa como parametro la conexion websocket.
 
 //Static
 app.use(express.static(path.join(__dirname,'public')));
