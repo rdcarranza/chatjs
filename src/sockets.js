@@ -1,5 +1,5 @@
 //webSocket
-var usuarios = [];
+
 var conexion_id=0;
 
 const usuario=require('./modelos/usuario');
@@ -13,22 +13,25 @@ module.exports = ws_io => {
         console.log("Se inició una Nueva Conexión: id -> "+socket.c_id);
 
         socket.on('nuevo_usuario', async (data, cb) => {
+            
             console.log("Conexión: id -> "+socket.c_id);
             console.log("socket->data: "+data);
-            if(usuarios.indexOf(data) >= 0){
-                console.log("usuario duplicado - indice: "+usuarios.indexOf(data));
-                cb(false);
+                     
+            if(data==null || data.trim()=='' || await usuario.findOne({nombre: data}).exec()!=null){
+                console.log("usuario invalido: "+data);
+                cb({cb: false, id: null});
             }else{
                 socket.nombreUsuario = data;
-                usuarios.push(socket.nombreUsuario);
+                
                 let nuevo_usuario=new usuario({
                     nombre: socket.nombreUsuario,
                     conexion_id: socket.c_id
                 });
                 await nuevo_usuario.save();
-                cb(true);
+                let usuario_almacenado = await usuario.findOne({nombre: data}).exec();
+                cb({cb: true,id: usuario_almacenado._id});
             }
-            console.log(usuarios);
+            
         });
 
         socket.on('envio_mensaje', data => {
@@ -41,7 +44,7 @@ module.exports = ws_io => {
         socket.on('disconnect', data => {
             console.log("Conexión perdida: id -> "+socket.c_id);
             if(!socket.nombreUsuario) return;
-            usuarios.splice(usuarios.indexOf(socket.nombreUsuario),1);
+            
             
         });
 

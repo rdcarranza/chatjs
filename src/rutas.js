@@ -10,8 +10,9 @@ enrutador.get('/', function(req,res){
 });
   
 enrutador.post('/registro', function(req,res){
-  console.log("req: "+req.body.nom_u);
-  res.json({'msj': "operación del servidor completa!", 'cod': 4234234});
+  console.log("req: "+req.body.cod_u);
+  res.json({'msj': "operación del servidor completa!", 'cod': req.body.cod_u});
+  
 });
 
 enrutador.get('/chat', function(req,res){

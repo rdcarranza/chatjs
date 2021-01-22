@@ -25,11 +25,14 @@ $(function(){
         nomusuario=$nombreUsuario.val();
         if(nomusuario!=null && nomusuario.trim()!=''){ //evita el registro de nombres nulos o vacios.
             socket.emit('nuevo_usuario',nomusuario, function(data){
-                if(data){
+                
+                if(data.cb){
                     //enviar nomusuario y redireccionar a la pagina de chat.
-                    $.post('/registro',{'nom_u': nomusuario},function(data_u){
+                    $.post('/registro',{'cod_u': data.id},function(data_u){
                         console.log("datos de usuario recibidos: "+data_u.cod);
                     });
+
+                    $.get('/chat');
                                                         
                 }else{
                     $errorRegistro.html(`
