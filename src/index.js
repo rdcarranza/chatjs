@@ -12,7 +12,7 @@ const helmet = require('helmet') //librería para la seguridad en la comunicaci�
 const app = express();
 const server = http.createServer(app);
 
-require('./database');
+require('./database'); // conexión con MongoDB.
 require('./registroUsuario');
 
 //websocket

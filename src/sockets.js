@@ -2,6 +2,8 @@
 var usuarios = [];
 var conexion_id=0;
 
+const usuario=require('./modelos/usuario');
+
 module.exports = ws_io => {
         
     ws_io.on('connection', socket => {
@@ -10,7 +12,7 @@ module.exports = ws_io => {
 
         console.log("Se inició una Nueva Conexión: id -> "+socket.c_id);
 
-        socket.on('nuevo_usuario', (data, cb) => {
+        socket.on('nuevo_usuario', async (data, cb) => {
             console.log("Conexión: id -> "+socket.c_id);
             console.log("socket->data: "+data);
             if(usuarios.indexOf(data) >= 0){
@@ -19,6 +21,11 @@ module.exports = ws_io => {
             }else{
                 socket.nombreUsuario = data;
                 usuarios.push(socket.nombreUsuario);
+                let nuevo_usuario=new usuario({
+                    nombre: socket.nombreUsuario,
+                    conexion_id: socket.c_id
+                });
+                await nuevo_usuario.save();
                 cb(true);
             }
             console.log(usuarios);
