@@ -1,0 +1,64 @@
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">ChatJS</a>
+            <div id="nav-mobile" class="right hide-on-med-and-down">
+                <div class="nav-wrapper col s12">
+                    <a href="#!" class="breadcrumb">Inicio</a>
+                    <a href="#!" class="breadcrumb">Registro de Usuario</a>
+                    <a href="#!" class="breadcrumb">ChatJS</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+<!--ChatJS-->
+    <div class="container row" id="fchat">
+      <div class="col s12 m12 l12">
+        <div class="card light-blue lighten-2">
+          <div class="card-content black-text">
+            <div id="barraSup-chat">
+              <span class="left left-align card-title" id="tarjeta-titulo">ChatJS</span>
+              <div class="right right-align">Usuario: <h5 id="barraSup-nomUsuario">Dario</h5></div>
+            </div>            
+            <p>Interactúa libremente en este chat grupal!</p>
+          </div>          
+
+          <div class="card-content" id="chat-visor">
+
+            <ul class="collection" id="lista-chat">
+              
+              <!--
+              <li class="collection-item avatar">
+                <i class="material-icons circle red">account_circle</i>
+                <span class="title">Usuario:</span>
+                <p>mensaje</p>              
+              </li>
+              -->
+
+            </ul>
+
+            <div class="progress">
+              <div class="indeterminate"></div>
+            </div>
+
+          </div>
+
+          <div class="card-action">
+            <form action="" id="form-mensaje" method="POST">
+              <div class="row input-field">
+                
+                  <i class="material-icons prefix">mode_comment</i>
+                  <input id="msj-chat" type="text" class="validate" data-length="120">
+                  <label for="msj-chat">Mensaje: </label>
+                  
+                  <button type="submit" class="waves-effect waves-light btn pulse" id="msj-submit"><i class="material-icons left">send</i> <span id="text-submit">ENVIAR</span></button>                                      
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
