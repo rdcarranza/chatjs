@@ -28,11 +28,11 @@ $(function(){
                 
                 if(data.cb){
                     //enviar nomusuario y redireccionar a la pagina de chat.
-                    $.post('/registro',{'cod_u': data.id},function(data_u){
+                    $.get('/registro',{'cod_u': data.id},function(data_u){
                         console.log("datos de usuario recibidos: "+data_u.cod);
                     });
 
-                    $.get('/chat');
+                    
                                                         
                 }else{
                     $errorRegistro.html(`
