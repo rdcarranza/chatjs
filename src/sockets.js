@@ -37,9 +37,8 @@ module.exports = ws_io => {
 
         socket.on('disconnect', data => {
             console.log("Conexión perdida: id -> "+socket.c_id);
-            if(!socket.nombreUsuario) return;
-            
-            
+            if(!socket.nombreUsuario) return;   
+            //falta completar
         });
 
     });
