@@ -2,7 +2,7 @@
 
 var conexion_id=0;
 
-const usuario=require('./modelos/usuario');
+const usuarios=require('./controladores/usuarios.controlador');
 
 module.exports = ws_io => {
         
@@ -17,19 +17,13 @@ module.exports = ws_io => {
             console.log("Conexión: id -> "+socket.c_id);
             console.log("socket->data: "+data);
                      
-            if(data==null || data.trim()=='' || await usuario.findOne({nombre: data}).exec()!=null){
+            if(data==null || data.trim()=='' || await !usuarios.verificarNombre(data)){
                 console.log("usuario invalido: "+data);
-                cb({cb: false, id: null});
+                cb({cb: false, cid: 0, t: null});
             }else{
                 socket.nombreUsuario = data;
-                
-                let nuevo_usuario=new usuario({
-                    nombre: socket.nombreUsuario,
-                    conexion_id: socket.c_id
-                });
-                await nuevo_usuario.save();
-                let usuario_almacenado = await usuario.findOne({nombre: data}).exec();
-                cb({cb: true,id: usuario_almacenado._id});
+                             
+                cb({cb: true, cid: socket.c_id ,t: '0'});               
             }
             
         });

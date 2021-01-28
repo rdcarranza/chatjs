@@ -6,6 +6,7 @@ const usuarioEsquema = new Schema({
     //usuario_id:{type: Number},
     nombre: String,
     conexion_id: Number,
+    token: {type: String, default: null},
     fecha_creado:{type: Date, default: Date.now}
 });
 

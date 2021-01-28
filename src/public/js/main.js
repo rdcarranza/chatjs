@@ -28,11 +28,9 @@ $(function(){
                 
                 if(data.cb){
                     //enviar nomusuario y redireccionar a la pagina de chat.
-                    $.get('/registro',{'cod_u': data.id},function(data_u){
+                    $.post('/registro',{'nombre':nomusuario,'cid':data.cid ,'token': data.t},function(data_u){
                         console.log("datos de usuario recibidos: "+data_u.cod);
-                    });
-
-                    
+                    });                  
                                                         
                 }else{
                     $errorRegistro.html(`

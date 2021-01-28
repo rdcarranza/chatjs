@@ -13,7 +13,6 @@ const app = express();
 const server = http.createServer(app);
 
 require('./database'); // conexión con MongoDB.
-require('./registroUsuario');
 
 //websocket
 const s_io = socketio.listen(server); //El websocket escucha desde el servidor web (express)
