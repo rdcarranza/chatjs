@@ -7,7 +7,9 @@ const usuarioEsquema = new Schema({
     nombre: String,
     conexion_id: Number,
     token: {type: String, default: null},
-    fecha_creado:{type: Date, default: Date.now}
+    fecha_creacion:{type: Date, default: Date.now},
+    fecha_actualizacion:{type: Date, default: Date.now},
+    conectado: Boolean
 });
 
 module.exports = mongoose.model('usuarios', usuarioEsquema);

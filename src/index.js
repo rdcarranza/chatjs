@@ -4,7 +4,7 @@ const path = require('path');
 const express = require('express'); //carga de la libreria del servidor web.
 const socketio = require('socket.io'); //carga de la librería.
 
-const sesion = require('express-session'); //debe cambiarse por otro middleware de sesiones.
+//const sesion = require('express-session'); //debe cambiarse por otro middleware de sesiones.
 
 const flash = require('connect-flash');
 const helmet = require('helmet') //librería para la seguridad en la comunicación http.
@@ -24,11 +24,8 @@ app.use(express.static(path.join(__dirname,'public')));
 //middlewares
 
 app.use(express.urlencoded({extended: false}));
-app.use(sesion({
-  secret:'cadenasecretadechatjs',
-  resave: false,
-  saveUninitialized: false
-}));
+
+
 app.use(flash());
 //app.use(helmet()); //activar cuando ya tenga configurada la conexion segura.
 

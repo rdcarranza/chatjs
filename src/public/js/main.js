@@ -25,11 +25,14 @@ $(function(){
         nomusuario=$nombreUsuario.val();
         if(nomusuario!=null && nomusuario.trim()!=''){ //evita el registro de nombres nulos o vacios.
             socket.emit('nuevo_usuario',nomusuario, function(data){
-                
+                console.log("cb: "+data.cb);
                 if(data.cb){
                     //enviar nomusuario y redireccionar a la pagina de chat.
-                    $.post('/registro',{'nombre':nomusuario,'cid':data.cid ,'token': data.t},function(data_u){
+                    $.post('/registro',{'nombre':nomusuario,'c_id':data.cid ,'token': data.t},function(data_u){
                         console.log("datos de usuario recibidos: "+data_u.cod);
+                        if(data_u!=null){
+                            location.href="./chat/"+data_u.token;
+                        }
                     });                  
                                                         
                 }else{
