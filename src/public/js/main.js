@@ -31,7 +31,7 @@ $(function(){
                     $.post('/registro',{'nombre':nomusuario,'c_id':data.cid ,'token': data.t},function(data_u){
                         console.log("datos de usuario recibidos: "+data_u.cod);
                         if(data_u!=null){
-                            location.href="./chat/"+data_u.token;
+                            location.href="./chat/"+data_u.token+"/"+nomusuario;
                         }
                     });                  
                                                         

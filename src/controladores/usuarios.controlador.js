@@ -4,7 +4,7 @@ const usuario=require('../modelos/usuario');
 
 const verificarNombre = async function(nom){
     try{
-        this.limpiarVencidos();
+        await this.limpiarVencidos();
         if(await usuario.findOne({nombre: nom}).exec()==null){
             console.log("nombre de usuario: "+nom+" VALIDO!")
             return true;            
@@ -19,10 +19,22 @@ const verificarNombre = async function(nom){
 
 }
 
-const limpiarVencidos = async function(){
-    let fa=Date.now();
-    console.log("usuariosControlador -> limpiarVencidos -> fecha actual: "+fa);
-    //await usuario.deleteMany({conectado: false, fecha_actualizacion: {$lte: (Date.now}});
+const limpiarVencidos = async function(){ //Limpia los usuarios que estan desconectados y su período de actualización (1 minuto) ya fue superado.
+    let fa=new Date();
+    let fx=new Date();
+    fa.set
+    if(fa.getUTCMinutes()!=0){
+        fa.setUTCMinutes(fa.getUTCMinutes()-1);  
+    }else{
+        if(fa.getUTCHours()!=0){
+            fa.setUTCHours(fa.getUTCHours()-1);
+            fa.setUTCMinutes(59);
+        }
+    }
+    
+    if(fx.getUTCMinutes()!=fa.getUTCMinutes()){
+        await usuario.deleteMany({conectado: false, fecha_actualizacion: {$lte: fa}});
+    }
 }
 
 const guardar = async function(nom,c_id,t,b){
@@ -62,7 +74,7 @@ const reconectar = async function(t){
         return await usuario.updateOne({token: t},{conectado: true,fecha_actualizacion: Date.now()});
     }catch(e){
         console.log("error -: "+e+" - controlador: usuario. - metodo: reconectar.");
-        return null;
+        return false;
     }
 }
 
@@ -70,7 +82,7 @@ const verificarToken=async function(t){
     try{
         let u = await usuario.findOne({token: t}).exec();
         if(u!=null && u.conectado==false){
-            return u.nombre;
+            return u;
         }else{
             return null;
         }
@@ -80,5 +92,14 @@ const verificarToken=async function(t){
     }
 }
 
+const validarToken=async function(t){
+    try{
+        return u = await usuario.findOne({token: t}).exec();       
+    }catch(e){
+        console.log("error -: "+e+" - controlador: usuario. - metodo: verificarToken.");
+        return null;
+    }
+}
 
-module.exports = usuariosControlador = {verificarNombre,guardar,buscar,desconectar,verificarToken,reconectar,limpiarVencidos};
+
+module.exports = usuariosControlador = {verificarNombre,guardar,buscar,desconectar,verificarToken,validarToken,reconectar,limpiarVencidos};

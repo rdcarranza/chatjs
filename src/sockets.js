@@ -3,7 +3,7 @@
 var conexion_id=0;
 
 const usuarios=require('./controladores/usuarios.controlador');
-const token=require('./controladores/tokens.controlador');
+const tokens=require('./controladores/tokens.controlador');
 
 module.exports = ws_io => {
         
@@ -27,7 +27,7 @@ module.exports = ws_io => {
                 cb({cb: false, cid: 0, t: null});
             }else{
                 socket.nombreUsuario = data;
-                socket.token = token.generar(socket.c_id,socket.nombreUsuario);
+                socket.token = tokens.generar(socket.c_id,socket.nombreUsuario);
 
                 cb({cb: true, cid: socket.c_id ,t: socket.token});               
             }
@@ -41,26 +41,28 @@ module.exports = ws_io => {
             });
         });
 
-        socket.on('disconnect', data => {
+        socket.on('disconnect', async data => {
             console.log("Conexión perdida: id -> "+socket.c_id);
             if(socket.nombreUsuario) {
-                usuarios.desconectar(socket.token);
+                await usuarios.desconectar(socket.token);
             }
         });
 
         socket.on('reconectar', async (data,cb) => {
             if(data!=null){
-                socket.nombreUsuario=usuarios.verificarToken(data);
-                if(socket.nombreUsuario!=null && tokens.verificar(socket.nombreUsuario)){
+                let u = await usuarios.verificarToken(data);
+                if(u!=null && await tokens.verificar(data,u.nombre)){
+                    socket.nombreUsuario=u.nombre;
                     socket.token=data;
-                    cb({cb: true,cid: socket.c_id, t: socket.token, n: socket.nombreUsuario});
-                    console.log("Conexión restablecida: id -> "+socket.c_id+" Usuario: "+socket.nombreUsuario);
-                }else{
-                    cb({cb: false,cid: socket.c_id, t: null, n: null});
-                    console.log("Conexión reusada: id -> "+socket.c_id);
-                }
-                
-            }           
+                    if(await usuarios.reconectar(socket.token)){
+                        cb({cb: true,cid: socket.c_id, t: socket.token, n: socket.nombreUsuario});
+                        console.log("Conexión restablecida: id -> "+socket.c_id+" Usuario: "+socket.nombreUsuario);
+                        return;
+                    }                    
+                }                
+            }
+            cb({cb: false,cid: null, t: null, n: null});
+            console.log("Conexión reusada: id -> "+socket.c_id);         
             
         });
 
