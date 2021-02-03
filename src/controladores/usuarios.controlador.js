@@ -101,5 +101,8 @@ const validarToken=async function(t){
     }
 }
 
+const limpiar=async function(){
+    await usuario.deleteMany({_id: {$ne: null}});    
+}
 
-module.exports = usuariosControlador = {verificarNombre,guardar,buscar,desconectar,verificarToken,validarToken,reconectar,limpiarVencidos};
+module.exports = usuariosControlador = {verificarNombre,guardar,buscar,desconectar,verificarToken,validarToken,reconectar,limpiarVencidos,limpiar};

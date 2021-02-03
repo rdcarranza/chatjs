@@ -42,6 +42,10 @@ app.use(function(err, req, res, next) {
     res.status(500).send('Algo no esta funcionando bien!');
   });
 
+//Limpiar BD
+//const usuarios=require('./controladores/usuarios.controlador');
+//usuarios.limpiar();
+
 //Iniciando el servidor web.
 
 app.set('port',process.env.PORT || 7000);

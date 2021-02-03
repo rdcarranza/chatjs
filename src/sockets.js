@@ -13,10 +13,7 @@ module.exports = ws_io => {
 
         console.log("Se inició una Nueva Conexión: id -> "+socket.c_id);
 
-        if(socket.token){
-
-        }
-
+        
         socket.on('nuevo_usuario', async (data, cb) => {
             
             console.log("Conexión: id -> "+socket.c_id);
@@ -43,7 +40,7 @@ module.exports = ws_io => {
 
         socket.on('disconnect', async data => {
             console.log("Conexión perdida: id -> "+socket.c_id);
-            if(socket.nombreUsuario) {
+            if(socket.nombreUsuario!=null) {
                 await usuarios.desconectar(socket.token);
             }
         });

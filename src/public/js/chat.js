@@ -39,12 +39,15 @@ $(function(){
     $formMensaje.submit(function(e){
         e.preventDefault();
         msj=$mensaje.val();
-        if(msj!=null && msj.trim()!=''&& nomusuario!=null && b){ //evita enviar mensajes vacios y de usuarios sin registro.
-            socket.emit('envio_mensaje',{
-                mensaje: msj,
-                usuario: nomusuario
-            });            
-        }else{
+        if(nomusuario!=null && b){
+            if(msj!=null && msj.trim()!=''){ //evita enviar mensajes vacios y de usuarios sin registro.
+                socket.emit('envio_mensaje',{
+                    mensaje: msj,
+                    usuario: nomusuario
+                });            
+            }
+        }
+        else{
             location.href="/";
         }
         $mensaje.val('');       
@@ -77,6 +80,7 @@ $(function(){
         
     });
 
+    
 
 });
 
