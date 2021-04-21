@@ -15,10 +15,17 @@
     "bcrypt-nodejs": "0.0.3",
     "connect-flash": "^0.1.1",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "helmet": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.5",
     "mquery": ">=3.2.3",
+=======
+    "express-session": "^1.17.0",
+    "mongoose": "^5.9.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+>>>>>>> bf5de8bb6d4eba71f2a570887003f292e603ccf4
     "socket.io": "^2.4.0"
   },
   "repository": {
