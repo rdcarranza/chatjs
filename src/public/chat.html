@@ -11,9 +11,7 @@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="/css/materialize.min.css">
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/estilo-main.css">
-
-    
+    <link rel="stylesheet" href="/css/estilo-main.css">    
 
 </head>
 <body>
@@ -29,14 +27,18 @@
             </div>
         </div>
     </nav>
-
+    
+<!--ChatJS-->
     <div class="container row" id="fchat">
       <div class="col s12 m12 l12">
         <div class="card light-blue lighten-2">
           <div class="card-content black-text">
-            <span class="card-title" id="tarjeta-titulo">ChatJS</span>
+            <div id="barraSup-chat">
+              <span class="left left-align card-title" id="tarjeta-titulo">ChatJS</span>
+              <div class="right right-align">Usuario: <h5 id="barraSup-nomUsuario"></h5></div>
+            </div>            
             <p>Interactúa libremente en este chat grupal!</p>
-          </div>
+          </div>          
 
           <div class="card-content" id="chat-visor">
 
@@ -77,7 +79,7 @@
 
 
 
-
+<!--Pie de Página-->
     <footer class="page-footer">
       <div class="container">
         <div class="row">
