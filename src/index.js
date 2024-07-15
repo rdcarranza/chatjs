@@ -1,8 +1,14 @@
 const http = require('http');
 const path = require('path');
 
+//variables de entorno
+const env = require('./env')
+env.verificarEnv();
+
+
 const express = require('express'); //carga de la libreria del servidor web.
-const socketio = require('socket.io'); //carga de la librería.
+//const socketio = require('socket.io'); //carga de la librería.
+const { Server } = require("socket.io");
 
 //const sesion = require('express-session'); //debe cambiarse por otro middleware de sesiones.
 
@@ -15,8 +21,11 @@ const server = http.createServer(app);
 require('./database'); // conexión con MongoDB.
 
 //websocket
-const s_io = socketio.listen(server); //El websocket escucha desde el servidor web (express)
+//const s_io = new socketio.Server(server); //El websocket escucha desde el servidor web (express)
+const s_io = new Server(server);
+
 require('./sockets')(s_io); //carga del módulo sockets.js (función), un websocket adaptado a nuestra necesidad. Y se pasa como parametro la conexion websocket.
+
 
 //Static
 app.use(express.static(path.join(__dirname,'public')));
